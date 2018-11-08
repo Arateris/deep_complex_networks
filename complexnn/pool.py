@@ -123,7 +123,7 @@ class SpectralPooling2D(KL.Layer):
 if __name__ == "__main__":
 	import cv2, sys
 	import __main__ as SP
-	import fft      as CF
+	from . import fft      as CF
 	
 	# Build Model
 	x = i = KL.Input(shape=(6,512,512))

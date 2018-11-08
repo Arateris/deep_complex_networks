@@ -26,7 +26,7 @@ class MsgFormatter(L.Formatter):
 	
 	def formatTime(self, record, datefmt):
 		t           = record.created
-		timeFrac    = abs(t-long(t))
+		timeFrac    = abs(t-int(t))
 		timeStruct  = time.localtime(record.created)
 		timeString  = ""
 		timeString += time.strftime("%F %T", timeStruct)
@@ -65,7 +65,7 @@ class Screw(Subcommand):
 	
 	@classmethod
 	def run(cls, d):
-		print(cls.__doc__)
+		print((cls.__doc__))
 
 
 class Train(Subcommand):
@@ -82,9 +82,9 @@ class Train(Subcommand):
 		argp.add_argument("-w", "--workdir",        default=".",                type=str,
 		    help="Path to the workspace directory for this experiment.")
 		argp.add_argument("-l", "--loglevel",       default="info",             type=str,
-		    choices=cls.LOGLEVELS.keys(),
+		    choices=list(cls.LOGLEVELS.keys()),
 		    help="Logging severity level.")
-		argp.add_argument("-s", "--seed",           default=0xe4223644e98b8e64, type=long,
+		argp.add_argument("-s", "--seed",           default=0xe4223644e98b8e64, type=int,
 		    help="Seed for PRNGs.")
 		argp.add_argument("--summary",     action="store_true",
 		    help="""Print a summary of the network.""")
@@ -207,7 +207,7 @@ def getArgParser(prog):
 	
 	
 	# Add subcommands
-	for v in globals().itervalues():
+	for v in globals().values():
 		if(isinstance(v, type)       and
 		   issubclass(v, Subcommand) and
 		   v != Subcommand):

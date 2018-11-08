@@ -52,7 +52,7 @@ class MusicNet(object):
     def splits(self):
         with open(self.filename, 'rb') as f:
             # This should be fast
-            all_inds = numpy.load(f).keys()
+            all_inds = list(numpy.load(f).keys())
         test_inds = ['2303', '2382', '1819']
         valid_inds = ['2131', '2384', '1792',
                       '2514', '2567', '1876']

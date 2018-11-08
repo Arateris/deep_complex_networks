@@ -4,7 +4,7 @@
 #
 # Authors: Dmitriy Serdyuk
 
-from __future__ import print_function
+
 import numpy
 import argparse
 
@@ -21,7 +21,7 @@ def resample_musicnet(file_in, file_out, frame_rate, frame_rate_out):
     resampled_data = {}
     with open(file_in, 'rb') as f_in:
         data_in = numpy.load(file_in)
-        n_files = len(data_in.keys())
+        n_files = len(list(data_in.keys()))
         for i, key in enumerate(data_in):
             print('.. aggregating {} ({} / {})'.format(key, i, n_files))
             data = data_in[key]
